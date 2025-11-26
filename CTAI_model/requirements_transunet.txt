@@ -1,0 +1,15 @@
+# TransUNet额外依赖包
+
+# 核心包
+einops==0.6.1  # 用于张量重塑操作
+tqdm==4.65.0   # 进度条显示
+
+# 原有依赖保持不变
+torch==1.10.1
+torchvision==0.11.2
+numpy==1.21.5
+matplotlib==3.5.1
+opencv-python==4.5.5.64
+SimpleITK==2.1.1
+pydicom==2.3.0
+albumentations==1.1.0  # 数据增强(可选)
