@@ -175,15 +175,15 @@ def upload_file():
                 'draw_url': 'http://127.0.0.1:5003/tmp/draw/' + pid,
                 'image_info': image_info
             }
-            print(f"[Upload] ✅ 处理成功!")
+            print(f"[Upload] 处理成功!")
             print(f"{'='*60}\n")
             return jsonify(result)
         else:
-            print(f"[Upload] ❌ 文件格式不支持")
+            print(f"[Upload] 文件格式不支持")
             return jsonify({'status': 0, 'error': '仅支持.dcm文件'})
             
     except Exception as e:
-        print(f"[Upload] ❌ 处理失败: {e}")
+        print(f"[Upload] 处理失败: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'status': 0, 'error': str(e)})
@@ -216,16 +216,16 @@ def init_model():
     
     model_path = "core/net/model.pth"
     if not os.path.exists(model_path):
-        print(f"❌ 模型文件未找到: {model_path}")
+        print(f"[Error] 模型文件未找到: {model_path}")
         print("请确保已将训练好的模型复制到此路径")
         raise FileNotFoundError(f"模型文件不存在: {model_path}")
     
     if torch.cuda.is_available():
         model.load_state_dict(torch.load(model_path))
-        print(f"✅ 模型已加载 (GPU): {model_path}")
+        print(f"[Model] 模型已加载 (GPU): {model_path}")
     else:
         model.load_state_dict(torch.load(model_path, map_location='cpu'))
-        print(f"✅ 模型已加载 (CPU): {model_path}")
+        print(f"[Model] 模型已加载 (CPU): {model_path}")
     
     model.eval()
     return model
@@ -236,14 +236,14 @@ if __name__ == '__main__':
         import logging
         logging.basicConfig(level=logging.INFO)
         
-        print("🔧 开始初始化模型...")
+        print("[Init] 开始初始化模型...")
         with app.app_context():
             current_app.model = init_model()
-        print("🚀 启动Flask服务器...")
-        print("📍 服务器地址: http://127.0.0.1:5003")
+        print("[Server] 启动Flask服务器...")
+        print("[Server] 服务器地址: http://127.0.0.1:5003")
         app.run(host='127.0.0.1', port=5003, debug=False, use_reloader=False)
     except Exception as e:
-        print(f"❌ Flask启动失败: {e}")
+        print(f"[Error] Flask启动失败: {e}")
         import traceback
         traceback.print_exc()
 
