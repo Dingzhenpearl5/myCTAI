@@ -89,10 +89,10 @@ def predict(dataset, model):
             heatmap_path = tmp_heatmap_dir / f'{file_name}_heatmap.png'
             
             cv2.imwrite(str(heatmap_path), heatmap_color)
-            print(f"[Predict] 🔥 热力图已生成: {heatmap_path}")
+            print(f"[Predict]热力图已生成: {heatmap_path}")
             # ===============================================
 
-            print(f"[Predict] ✅ 预测完成，mask保存至: {mask_path}")
+            print(f"[Predict]预测完成，mask保存至: {mask_path}")
             
             # 返回结果字典
             return {
@@ -104,7 +104,7 @@ def predict(dataset, model):
             }
             
     except Exception as e:
-        print(f"[Predict] ❌ 预测失败: {e}")
+        print(f"[Predict]预测失败: {e}")
         import traceback
         traceback.print_exc()
         raise

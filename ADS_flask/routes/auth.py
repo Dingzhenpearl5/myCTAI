@@ -25,7 +25,7 @@ def login():
         password = data.get('password', '')
         ip_address = request.remote_addr
         
-        print(f"[Login] 用户 {username} 从 {ip_address} 尝试登录")
+        print(f"[Login]用户 {username} 从 {ip_address} 尝试登录")
         
         if not username or not password:
             return error_response('用户名和密码不能为空')

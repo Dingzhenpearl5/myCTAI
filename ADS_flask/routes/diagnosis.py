@@ -194,7 +194,8 @@ def analyze_condition():
         # 简单校验
         if not features:
             return error_response('缺少特征数据')
-            
+        
+        print(f"[Analyze] 收到特征数据: {features}")
         print(f"[Analyze] 开始调用 DeepSeek 分析...")
         
         from core.analyze import analyze_diagnosis
@@ -382,6 +383,7 @@ def get_statistics():
             'total_users': total_users,
             'today_diagnoses': today_diagnoses,
             'daily_stats': daily_stats,
+            'trend': daily_stats,
             'recent_diagnoses': recent_diagnoses
         })
         
